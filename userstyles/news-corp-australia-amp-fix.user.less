@@ -1,0 +1,57 @@
+/* ==UserStyle==
+@name		   News Corp Australia AMP Fix
+@version       1.0.0
+@author		   thea
+@description   Resize elements on News Corp AU AMP pages for a better experience on desktop.
+@namespace	   thea.pet
+@preprocessor  less
+==/UserStyle== */
+
+/* stylelint-disable selector-class-pattern */
+/* stylelint-disable-next-line at-rule-no-vendor-prefix */
+@-moz-document domain("adelaidenow.com.au"), domain("cairnspost.com.au"), domain("codesports.com.au"), domain("couriermail.com.au"), domain("dailytelegraph.com.au"), domain("geelongadvertiser.com.au"), domain("goldcoastbulletin.com.au"), domain("heraldsun.com.au"), domain("skynews.com.au"), domain("theaustralian.com.au"), domain("thechronicle.com.au"), domain("themercury.com.au"), domain("townsvillebulletin.com.au"), domain("weeklytimesnow.com.au") {
+	.amp {
+		amp-img,
+		amp-iframe {
+			aspect-ratio: 16/9;
+
+			&.i-amphtml-layout-responsive img {
+				width: auto;
+				min-width: unset;
+				height: 100%;
+				object-fit: cover;
+			}
+
+			i-amphtml-sizer {
+				padding: unset !important;
+			}
+		}
+
+		amp-sidebar ~ *,
+		.more-coverage-v2 {
+			float: unset;
+			max-width: 800px;
+			margin-right: auto;
+			margin-left: auto;
+		}
+
+		.g_wrapper {
+			width: unset;
+		}
+
+		.amp-placeholder,
+		#comments-load {
+			display: none;
+		}
+	}
+}
+
+/* stylelint-disable-next-line at-rule-no-vendor-prefix */
+@-moz-document regexp("https?://resourcesssl\.newscdn\.com\.au.*#amp=1$")
+{
+	#video {
+		.videoWrapper {
+			padding-top: 100vh;
+		}
+	}
+}

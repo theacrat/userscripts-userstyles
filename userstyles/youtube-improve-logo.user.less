@@ -1,0 +1,22 @@
+/* ==UserStyle==
+@name          YouTube Improve Logo
+@version       1.0.0
+@author        thea
+@description   Change the red in the YouTube logo to the text colour.
+@namespace     thea.pet
+@preprocessor  less
+==/UserStyle== */
+
+/* stylelint-disable-next-line at-rule-no-vendor-prefix */
+@-moz-document domain("youtube.com") {
+	yt-icon [fill="red"],
+	yt-icon [fill*="F00" i] {
+		fill: var(--yt-spec-wordmark-text);
+	}
+
+	[class*="yt-icon"] [fill="white"],
+	[class*="yt-icon"] [fill*="#FFF" i],
+	[class*="yt-icon"] [fill*="#FAFAFA" i] {
+		fill: var(--yt-spec-brand-background-primary);
+	}
+}
