@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         YouTube Open in iOS App
-// @version      1.0.0
+// @version      1.0.1
 // @author       thea
 // @description  Open YouTube links in the iOS app (allows for tweaked apps).
 // @icon         https://www.youtube.com/favicon.ico
@@ -12,6 +12,7 @@
 // ==/UserScript==
 
 const domains = ["youtube.com", "youtu.be"];
+const disallowedPaths = ["redirect"];
 
 function getIntent(href) {
 	if (!href) {
@@ -21,6 +22,13 @@ function getIntent(href) {
 	const url = new URL(href);
 
 	if (!domains.includes(url.hostname.split(".").slice(-2).join("."))) {
+		return;
+	}
+
+	const splitPath = url.pathname.split("/");
+	const filtered = splitPath.filter((p) => p);
+
+	if (disallowedPaths.includes(filtered[0])) {
 		return;
 	}
 
