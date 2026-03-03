@@ -1,0 +1,54 @@
+/* ==UserStyle==
+@name          Reddit Sidebar Wrap
+@version       1.0.0
+@author        thea
+@description   Stop the old Reddit sidebar overflowing.
+@namespace     thea.pet
+@preprocessor  less
+==/UserStyle== */
+
+@-moz-document domain("reddit.com") {
+	.side {
+		code,
+		table:not(#per-sr-karma) {
+			overflow-x: scroll;
+			display: inline-block;
+			max-width: -moz-available;
+			max-width: -webkit-fill-available;
+		}
+
+		::-webkit-scrollbar {
+			display: none;
+		}
+
+		.md p code {
+			height: 100%;
+			line-height: inherit !important;
+		}
+
+		* {
+			scrollbar-width: none;
+		}
+
+		*:has(> .flair) {
+			display: flex;
+			align-items: center;
+			text-wrap: nowrap;
+			white-space: pre;
+
+			> *:not(.flair) {
+				flex-shrink: 0;
+			}
+
+			.flair {
+				overflow: scroll;
+				text-overflow: clip;
+			}
+
+			.flairselector {
+				top: 270px !important;
+				left: unset !important;
+			}
+		}
+	}
+}

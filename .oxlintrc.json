@@ -1,0 +1,43 @@
+{
+	"$schema": "./node_modules/oxlint/configuration_schema.json",
+	"plugins": ["eslint", "unicorn", "oxc", "import", "promise"],
+	"categories": {
+		"correctness": "error",
+		"suspicious": "error",
+		"pedantic": "error",
+		"nursery": "error",
+		"style": "error",
+		"restriction": "error",
+		"perf": "error"
+	},
+	"rules": {
+		"eslint/max-lines": "off",
+		"eslint/max-lines-per-function": [
+			"warn",
+			{
+				"skipBlankLines": true,
+				"skipComments": true
+			}
+		],
+		"eslint/max-statements": "off",
+		"eslint/no-ternary": "off",
+		"import/unambiguous": "off",
+		"oxc/no-async-await": "off",
+		"oxc/no-optional-chaining": "off",
+		"unicorn/prefer-top-level-await": "off"
+	},
+	"overrides": [
+		{
+			"files": ["*.config.{js,ts}"],
+			"rules": {
+				"import/no-default-export": "off",
+				"import/no-anonymous-default-export": "off"
+			}
+		}
+	],
+	"env": {
+		"builtin": true,
+		"browser": true,
+		"greasemonkey": true
+	}
+}
