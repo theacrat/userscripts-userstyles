@@ -1,6 +1,6 @@
 /* ==UserStyle==
 @name          YouTube Show More Items
-@version       1.0.0
+@version       1.1.1
 @author        thea
 @description   Add more columns to YouTube feeds.
 @namespace     thea.pet
@@ -9,6 +9,7 @@
 @var           checkbox pfp "Show profile pictures" 1
 ==/UserStyle== */
 
+/* stylelint-disable-next-line at-rule-no-vendor-prefix */
 @-moz-document domain("youtube.com") {
 	@total: calc(var(--ytd-rich-grid-items-per-row) + @additional);
 
@@ -29,7 +30,8 @@
 		& when (@pfp =0) {
 			#avatar-link,
 			#avatar-container,
-			div:has(> yt-decorated-avatar-view-model) {
+			div:has(> yt-decorated-avatar-view-model),
+			div:has(> yt-avatar-stack-view-model) {
 				display: none !important;
 			}
 		}
