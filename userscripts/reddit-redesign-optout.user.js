@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Reddit Redesign Optout
-// @version      1.0.0
+// @version      1.0.1
 // @author       thea
 // @description  Default to old Reddit through the redesign_optout cookie.
 // @icon         https://www.reddit.com/favicon.ico
@@ -12,6 +12,7 @@
 // ==/UserScript==
 
 const DOMAIN_SPLIT_SUBDOMAIN = 0;
+const DOMAIN_SPLIT_SUBDOMAIN_MAX_LENGTH = 3;
 
 const Cookies = Object.freeze({
 	DISABLE: "disable_optout",
@@ -48,7 +49,10 @@ const setCookie = async (name, value) => {
 
 const redirectToWWW = (allowedDomains) => {
 	const subdomain = globalThis.location.host.split(".")[DOMAIN_SPLIT_SUBDOMAIN];
-	if (!allowedDomains.includes(subdomain)) {
+	if (
+		!allowedDomains.includes(subdomain) &&
+		subdomain.length <= DOMAIN_SPLIT_SUBDOMAIN_MAX_LENGTH
+	) {
 		globalThis.location = `${globalThis.location.protocol}//${Domains.WWW}${globalThis.location.pathname}`;
 		return true;
 	}
