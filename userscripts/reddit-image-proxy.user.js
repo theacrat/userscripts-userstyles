@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Reddit Image Proxy
-// @version      1.0.0
+// @version      1.1.0
 // @author       thea
 // @description  Redirect Reddit's image viewer to a proxy.
 // @icon         https://www.reddit.com/favicon.ico
@@ -10,7 +10,7 @@
 // @match        https://*.reddit.com/media?*
 // ==/UserScript==
 
-const proxy = new URL("https://rip.thea.pet");
+const proxy = new URL("https://external-content.duckduckgo.com/iu/");
 
 const replaceContent = () => {
 	globalThis.stop();
@@ -19,7 +19,8 @@ const replaceContent = () => {
 	const urlParam = searchParams.get("url");
 
 	const imageUrl = new URL(urlParam);
-	globalThis.location.replace(`${proxy.origin}${imageUrl.pathname}`);
+	proxy.searchParams.set("u", imageUrl.href);
+	globalThis.location.replace(proxy.href);
 };
 
 if (globalThis.location.pathname === "/media") {
